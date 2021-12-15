@@ -34,7 +34,12 @@ namespace VogCodeChallenge.API
             services.AddControllers().AddNewtonsoftJson(options => 
                 options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
 
-            services.AddDbContext<ApiDbContext>(opt => opt.UseInMemoryDatabase("Dev_InMemoryDb"));
+            //services.AddDbContext<ApiDbContext>(opt => opt.UseInMemoryDatabase("Dev_InMemoryDb"));
+
+            //I suggest to use SQLServer
+            //we already have all the necesary infraestructure to switch to this DB by change only this line of code :D
+            services.AddDbContext<ApiDbContext>(x => x.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            
             services.AddScoped<IEmployeeService,EmployeeService>();
         }
 
