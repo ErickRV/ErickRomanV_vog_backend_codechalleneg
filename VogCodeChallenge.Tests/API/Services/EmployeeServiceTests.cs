@@ -103,13 +103,19 @@ namespace VogCodeChallenge.Tests.API.Services
             //Arrange
             SeedTestingContext();
             Department department = context.Departments.First();
-            IList<Employee> control = context.Employees.Where(e => e.DepartmentId == department.DepartmentId).ToList();
+            IList<OutputEmployeeDto> control = context.Employees.Where(e => e.DepartmentId == department.DepartmentId).Select(e => e.toOutput()).ToList();
             //Act
-            IList<Employee> employees = employeeService.ListAllByDepartment(department.DepartmentId);
+            IList<OutputEmployeeDto> employees = employeeService.ListAllByDepartment(department.DepartmentId);
             //Assert
             Assert.AreEqual(control.Count, employees.Count);
-            foreach (Employee employee in control)
-                Assert.AreEqual(employee, employees.First(e => e.EmployeeId == employee.EmployeeId));
+            foreach (OutputEmployeeDto employee in control) {
+                OutputEmployeeDto result = employees.First(e => e.EmployeeId == employee.EmployeeId);
+                Assert.AreEqual(employee.DepartmentId, result.DepartmentId);
+                Assert.AreEqual(employee.FirstName, result.FirstName);
+                Assert.AreEqual(employee.LastName, result.LastName);
+                Assert.AreEqual(employee.JobTitle, result.JobTitle);
+                Assert.AreEqual(employee.MailingAddress, result.MailingAddress);
+            }
         }
 
         [TestMethod]

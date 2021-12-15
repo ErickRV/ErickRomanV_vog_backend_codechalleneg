@@ -24,5 +24,17 @@ namespace VogCodeChallenge.Domain.Entities
             JobTitle = input.JobTitle;
             MailingAddress = input.MailingAddress;
         }
+
+        public OutputEmployeeDto toOutput() {
+            return new OutputEmployeeDto
+            {
+                DepartmentId = this.DepartmentId,
+                EmployeeId = this.EmployeeId,
+                FirstName = this.FirstName,
+                LastName = this.LastName,
+                JobTitle = this.JobTitle,
+                MailingAddress = this.MailingAddress,
+            };
+        }
     }
 }

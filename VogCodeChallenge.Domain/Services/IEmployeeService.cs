@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using VogCodeChallenge.Domain.DTOs.Employee;
 using VogCodeChallenge.Domain.Entities;
 
 namespace VogCodeChallenge.Domain.Services
@@ -9,6 +10,6 @@ namespace VogCodeChallenge.Domain.Services
     {
         IEnumerable<Employee> GetAll();
         IList<Employee> ListAll();
-        IList<Employee> ListAllByDepartment(int DepartmentId);
+        IList<OutputEmployeeDto> ListAllByDepartment(int DepartmentId);
     }
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using VogCodeChallenge.API.Data;
+using VogCodeChallenge.Domain.DTOs.Employee;
 using VogCodeChallenge.Domain.Entities;
 using VogCodeChallenge.Domain.Services;
 
@@ -40,7 +41,7 @@ namespace VogCodeChallenge.API.Services
             }
         }
 
-        public IList<Employee> ListAllByDepartment(int DepartmentId)
+        public IList<OutputEmployeeDto> ListAllByDepartment(int DepartmentId)
         {
             try
             {
@@ -48,7 +49,7 @@ namespace VogCodeChallenge.API.Services
                 if (department == default)
                     throw new Exception("Department not found!");
 
-                return context.Employees.Where(e => e.DepartmentId == department.DepartmentId).ToList();
+                return context.Employees.Where(e => e.DepartmentId == department.DepartmentId).Select(e => e.toOutput()).ToList();
             }
             catch (Exception ex)
             {

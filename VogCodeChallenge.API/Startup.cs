@@ -12,8 +12,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using VogCodeChallenge.API.Data;
+using VogCodeChallenge.API.Services;
 using VogCodeChallenge.Domain.DTOs.Employee;
 using VogCodeChallenge.Domain.Entities;
+using VogCodeChallenge.Domain.Services;
 
 namespace VogCodeChallenge.API
 {
@@ -29,9 +31,11 @@ namespace VogCodeChallenge.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers();
+            services.AddControllers().AddNewtonsoftJson(options => 
+                options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
 
             services.AddDbContext<ApiDbContext>(opt => opt.UseInMemoryDatabase("Dev_InMemoryDb"));
+            services.AddScoped<IEmployeeService,EmployeeService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
