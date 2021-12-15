@@ -37,7 +37,7 @@ namespace VogCodeChallenge.API
             //services.AddDbContext<ApiDbContext>(opt => opt.UseInMemoryDatabase("Dev_InMemoryDb"));
 
             //I suggest to use SQLServer
-            //we already have all the necesary infraestructure to switch to this DB by change only this line of code :D
+            //we already have all the necesary infraestructure to switch to this DB by changing only this line of code :D
             services.AddDbContext<ApiDbContext>(x => x.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             
             services.AddScoped<IEmployeeService,EmployeeService>();
