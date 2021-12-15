@@ -12,6 +12,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using VogCodeChallenge.API.Data;
+using VogCodeChallenge.Domain.DTOs.Employee;
+using VogCodeChallenge.Domain.Entities;
 
 namespace VogCodeChallenge.API
 {

@@ -10,5 +10,12 @@ namespace VogCodeChallenge.Domain.Entities
         public string Name { get; set; }
         public string Address { get; set; }
         public List<Employee> Employees { get; set; }
+
+        private Department(){}
+        public Department(string Name, string Address)
+        {
+            this.Name = Name;
+            this.Address = Address;
+        }
     }
 }
